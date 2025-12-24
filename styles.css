@@ -1,0 +1,20 @@
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+:root{--bg:#f0f4f8;--accent:#d94f6f;--card:#fff}
+body{background:linear-gradient(180deg,#e6eef6 0%,var(--bg) 100%);height:100vh;display:flex;align-items:center;justify-content:center}
+.wrap{width:720px;max-width:95%;text-align:center}
+.envelope{width:680px;height:420px;margin:0 auto;position:relative;cursor:pointer;perspective:1000px;transition:transform .25s ease}
+.envelope .body{position:absolute;inset:40px 0 0 0;background:linear-gradient(180deg,#fff 0%,#fafafa 100%);border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.14)}
+.envelope .flap{position:absolute;left:0;right:0;top:0;height:180px;background:linear-gradient(180deg,#d94f6f 0%,#c23d57 100%);clip-path:polygon(50% 0,100% 58%,0 58%);transform-origin:center 60px;transition:transform .7s cubic-bezier(.2,.9,.25,1)}
+.envelope.open .flap{transform:rotateX(-160deg) translateY(-14px)}
+.letter{width:600px;height:360px;margin:-240px auto 0;position:relative;z-index:-1;transform:translateY(60px);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.25,1),opacity .6s}
+.envelope.open ~ .letter{transform:translateY(-10px);opacity:1;z-index:2}
+.letter img{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block;opacity:0;transform:scale(.995);transition:opacity .6s ease,transform .8s cubic-bezier(.2,.9,.25,1);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.letter img.loaded{opacity:1;transform:scale(1)}
+.loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.loader::before{content:"";width:48px;height:48px;border-radius:50%;border:5px solid rgba(0,0,0,.08);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.reset{margin-top:18px;display:inline-block;background:#fff;border:1px solid rgba(0,0,0,.08);padding:10px 14px;border-radius:8px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+.hint{margin-top:14px;color:#536070;font-size:14px}
+code{background:#fff;padding:2px 6px;border-radius:4px;border:1px dashed rgba(0,0,0,.06)}
+@media (max-width:900px){.wrap{width:92%}.envelope{width:90vw;height:56vw}.envelope .body{inset:26px 0 0 0}.letter{width:82vw;height:52vw;margin:-40vw auto 0}}
+@media (max-width:420px){.envelope{width:90vw;height:56vw}.envelope .body{inset:20px 0 0 0}.letter{width:82vw;height:52vw;margin:-40vw auto 0}}
